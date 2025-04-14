@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>ホーム</title></head>
+<body>
+	<div>home</div>
+	<div>
+		<button th:onclick="|location.href='@{/register}'|">ユーザ登録</button>
+	</div>
+	<a th:href="@{/logout}">ログアウト</a>
+</body>
+</html>

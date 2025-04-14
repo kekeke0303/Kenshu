@@ -1,0 +1,76 @@
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+}
+.skill-scroll {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* 基本情報のテーブル */
+.two-column-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.two-column-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.two-column-table td:first-child {
+    width: 150px;
+    text-align: right;
+}
+
+/* 言語スキルのテーブル */
+.skill-table-container {
+    max-height: 300px;
+    overflow-y: auto; /* スクロールを可能にする */
+    margin-bottom: 10px;
+}
+
+.skill-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.skill-table th, .skill-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.skill-table td {
+    text-align: center;
+}
+
+/* ボタンのデザイン */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.remove-btn {
+    background-color: #f44336;
+}
+
+.remove-btn:hover {
+    background-color: #e53935;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 4px;
+}

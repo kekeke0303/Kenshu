@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザ登録</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/register.js}"></script> <!-- 外部JavaScriptの読み込み -->
+</head>
+<body>
+    <h2>ユーザ登録</h2>
+    
+    <!-- パンくずリスト -->
+	<div class="breadcrumb">
+	    <a th:href="@{/home}">ホーム</a> &gt; ユーザ登録
+	</div>
+
+    <form th:action="@{/register}" method="post" th:object="${usersDTO}">
+        <!-- 基本情報 -->
+        <h3>基本情報</h3>
+        <table class="two-column-table">
+            <tr>
+                <td>ユーザID:</td>
+                <td>
+					<input type="text" th:field="*{loginId}">
+					<div th:if="${#fields.hasErrors('loginId')}" th:errors="*{loginId}" class="error-message"></div>
+				</td>
+                <td>パスワード:</td>
+                <td>
+					<input type="password" th:field="*{password}">
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></div>
+				</td>
+            </tr>
+            <tr>
+                <td>氏名:</td>
+                <td>
+					<input type="text" th:field="*{name}">
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></div>
+				</td>
+                <td>年齢:</td>
+                <td>
+					<input type="number" th:field="*{age}">
+					<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error-message"></div>
+				</td>
+            </tr>
+            <tr>
+                <td>所属グループ:</td>
+                <td>
+                    <select th:field="*{group.id}">
+                        <option th:each="group : ${groups}" th:value="${group.id}" th:text="${group.name}"></option>
+                    </select>
+                </td>
+                <td>権限:</td>
+                <td>
+					<select th:field="*{authority}">
+					    <option value="0">一般</option>
+					    <option value="1">管理者</option>
+					</select>
+				</td>
+            </tr>
+        </table>
+
+        <!-- スキル -->
+        <h3>スキル</h3>
+        <div class="skill-table-container">
+            <table id="skillTable" class="skill-table">
+                <thead>
+                    <tr>
+                        <th>大項目</th>
+                        <th>中項目</th>
+                        <th>スキルレベル</th>
+                        <th>案件利用経験有無</th>
+                        <th>案件利用経験年月数</th>
+                        <th>削除</th>
+                    </tr>
+                </thead>
+                <tbody id="skillTableBody">
+                    <tr>
+                        <td>
+                            <select name="skills[0].primarySkillId">
+                                <option th:each="primarySkill : ${primarySkills}" th:value="${primarySkill.id}" th:text="${primarySkill.name}"></option>
+                            </select>
+                        </td>
+                        <td>
+                            <select name="skills[0].secondarySkillId">
+                                <option th:each="secondarySkill : ${secondarySkills}" th:value="${secondarySkill.id}" th:text="${secondarySkill.name}"></option>
+                            </select>
+                        </td>
+                        <td>
+							<select name="skills[0].level">
+						        <option th:each="i : ${#numbers.sequence(1,5)}" th:value="${i}" th:text="${i}"></option>
+						    </select>
+                        </td>
+                        <td>
+                            <select name="skills[0].umu">
+                                <option value="0">無</option>
+                                <option value="1">有</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" name="skills[0].expYear">
+                        </td>
+                        <td>
+                            <button type="button" onclick="removeSkillRow(this)" class="remove-btn">削除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" onclick="addSkillRow()">スキル追加</button>
+        </div>
+
+        <button type="submit">登録</button>
+    </form>
+</body>
+</html>
